@@ -22,10 +22,10 @@ namespace OopLearning.BL
             get
             {
                 if (!string.IsNullOrWhiteSpace(cpr))
-                    if (DateTime.TryParse($"{cpr[0]}{cpr[1]}-{cpr[2]}{cpr[3]}-{cpr[4]}{cpr[5]}", out DateTime birthday))
-                        return birthday;
-                    else
-                        throw new InvalidOperationException("Unable to extract birthday from CPR");
+                {
+                    DateTime.TryParse($"{cpr[0]}{cpr[1]}-{cpr[2]}{cpr[3]}-{cpr[4]}{cpr[5]}", out DateTime birthday);
+                    return birthday;
+                }
                 else
                     throw new InvalidOperationException("CPR is not yet saved");
             }
@@ -46,13 +46,13 @@ namespace OopLearning.BL
             get
             {
                 if (!string.IsNullOrWhiteSpace(cpr))
-                    if (int.TryParse(cpr, out int cprNumber))
-                        if (cprNumber % 2 == 0)
-                            return true;
-                        else
-                            return false;
+                {
+                    int.TryParse(cpr, out int cprNumber);
+                    if (cprNumber % 2 == 0)
+                        return true;
                     else
-                        throw new InvalidOperationException("Unable to extract number from CPR");
+                        return false;
+                }
                 else
                     throw new InvalidOperationException("CPR is not yet saved");
             }
@@ -77,7 +77,7 @@ namespace OopLearning.BL
             if (cpr.Length != 10)
                 return (false, "CPR must be 10 characters");
             DateTime birthday;
-            if (DateTime.TryParse($"{cpr[0]}{cpr[1]}-{cpr[2]}{cpr[3]}-{cpr[4]}{cpr[5]}", out birthday))
+            if (!DateTime.TryParse($"{cpr[0]}{cpr[1]}-{cpr[2]}{cpr[3]}-{cpr[4]}{cpr[5]}", out birthday))
                 return (false, "CPR does not contain a valid birthdate");
             if (birthday > DateTime.Now)
                 return (false, "Birthday is in the future");
