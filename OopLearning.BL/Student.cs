@@ -14,5 +14,9 @@ namespace OopLearning.BL
             set { unilogin = value; }
         }
 
+        public override string CreateIdentifier()
+        {
+            return unilogin;
+        }
     }
 }

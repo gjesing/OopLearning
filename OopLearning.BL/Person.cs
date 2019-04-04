@@ -83,5 +83,9 @@ namespace OopLearning.BL
                 return (false, "Birthday is in the future");
             return (true, "");
         }
+        public virtual string CreateIdentifier()
+        {
+            return Cpr;
+        }
     }
 }

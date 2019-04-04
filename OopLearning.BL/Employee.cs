@@ -14,5 +14,9 @@ namespace OopLearning.BL
             set { initials = value; }
         }
 
+        public override string CreateIdentifier()
+        {
+            return initials;
+        }
     }
 }
