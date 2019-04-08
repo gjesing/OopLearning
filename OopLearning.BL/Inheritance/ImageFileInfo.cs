@@ -28,9 +28,9 @@ namespace OopLearning.BL.Inheritance
 
         public override bool IsSizeTooLarge()
         {
-            if (Width > 1920 || Height > 1080)
+            if (base.IsSizeTooLarge() || Width > 1920 || Height > 1080)
             {
-                return base.IsSizeTooLarge();
+                return true;
             }
             return false;
         }
