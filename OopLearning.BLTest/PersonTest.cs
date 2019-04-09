@@ -1,5 +1,6 @@
 using OopLearning.BL;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace OopLearning.BLTest
@@ -130,6 +131,28 @@ namespace OopLearning.BLTest
         {
             Person person = new Person();
             Assert.Throws<InvalidOperationException>(() => person.IsWoman);
+        }
+        [Fact]
+        public void CreateIdentifier_CprShouldBeReturned()
+        {
+            Person person = new Person()
+            {
+                Cpr = "0101010101"
+            };
+            string expecedCpr = person.Cpr;
+            string actualCpr = person.CreateIdentifier();
+            Assert.Equal(expecedCpr, actualCpr);
+        }
+        [Fact]
+        public void Sort_ListShouldBeSortedByNameAndBirthday()
+        {
+            Person person1 = new Person() { Name = "b b", Cpr = "0202020202" };
+            Person person2 = new Person() { Name = "a a", Cpr = "0202020202" };
+            Person person3 = new Person() { Name = "b b", Cpr = "0101010101" };
+            List<Person> actualPeople = new List<Person>() { person1, person2, person3 };
+            actualPeople.Sort();
+            List<Person> expectedPeople = new List<Person>() { person2, person3, person1 };
+            Assert.Equal(expectedPeople, actualPeople);
         }
     }
 }

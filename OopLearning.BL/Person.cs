@@ -2,7 +2,7 @@
 
 namespace OopLearning.BL
 {
-    public class Person
+    public class Person : IComparable<Person>
     {
         private string name;
         private string cpr;
@@ -86,6 +86,16 @@ namespace OopLearning.BL
         public virtual string CreateIdentifier()
         {
             return Cpr;
+        }
+
+        public int CompareTo(Person other)
+        {
+            if (other is null) return 1;
+            if (Name.ToLower() == other.Name.ToLower())
+            {
+                Birthday.CompareTo(other.Birthday);
+            }
+            return Name.ToLower().CompareTo(other.Name.ToLower());
         }
     }
 }
